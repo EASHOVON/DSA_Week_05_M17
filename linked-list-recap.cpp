@@ -16,6 +16,10 @@ public:
     }
 };
 
+void insertAtTail(Node *&head, int val);
+void insertAtHead(Node *&head, int val);
+int countLength(Node *&head);
+
 void insertAtTail(Node *&head, int val)
 {
     Node *newNode = new Node(val);
@@ -55,6 +59,19 @@ void display(Node *n)
          << endl;
 }
 
+int countLength(Node *&head)
+{
+    int count = 0;
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        count++;
+        temp = temp->Next;
+    }
+
+    return count;
+}
+
 int main()
 {
     Node *head = NULL;
@@ -85,6 +102,10 @@ int main()
         cout << "Next Choice: ";
         cin >> choice;
     }
+
+    cout << endl
+         << "Linked List: ";
     display(head);
+    cout << "Length of the list: " << countLength(head) << endl;
     return 0;
 }
