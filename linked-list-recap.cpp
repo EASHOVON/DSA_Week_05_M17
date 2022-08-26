@@ -19,6 +19,7 @@ public:
 void insertAtTail(Node *&head, int val);
 void insertAtHead(Node *&head, int val);
 int countLength(Node *&head);
+void insertAtSpecificPosition(Node *&head, int pos, int value);
 
 void insertAtTail(Node *&head, int val)
 {
@@ -72,13 +73,29 @@ int countLength(Node *&head)
     return count;
 }
 
+void insertAtSpecificPosition(Node *&head, int pos, int value)
+{
+    int i = 0;
+    Node *newNode = new Node(value);
+    Node *temp = head;
+    while (i < pos - 2)
+    {
+        temp = temp->Next;
+        i++;
+    }
+
+    newNode->Next = temp->Next;
+    temp->Next = newNode;
+}
+
 int main()
 {
     Node *head = NULL;
-    int value;
+    int value, position;
     cout << "Choice 1: Insertion at head" << endl
          << "Choice 2: Insertion at tail" << endl
-         << "Choice 3: Exit" << endl
+         << "Choice 3: Insertion at specific position" << endl
+         << "Choice 0: Exit" << endl
          << endl;
     cout << "Next Choice: ";
     int choice;
@@ -86,16 +103,24 @@ int main()
 
     while (choice != 0)
     {
-        cout << "Enter the value: ";
-        cin >> value;
         switch (choice)
         {
         case 1:
+            cout << "Enter the value: ";
+            cin >> value;
             insertAtHead(head, value);
             break;
         case 2:
+            cout << "Enter the value: ";
+            cin >> value;
             insertAtTail(head, value);
             break;
+        case 3:
+            cout << "Enter the Desired Position: ";
+            cin >> position;
+            cout << "Enter the value: ";
+            cin >> value;
+            insertAtSpecificPosition(head, position, value);
         default:
             break;
         }
