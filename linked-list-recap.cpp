@@ -20,6 +20,7 @@ void insertAtTail(Node *&head, int val);
 void insertAtHead(Node *&head, int val);
 int countLength(Node *&head);
 void insertAtSpecificPosition(Node *&head, int pos, int value);
+int searchByValueUnique(Node *&head, int value);
 
 void insertAtTail(Node *&head, int val)
 {
@@ -88,6 +89,26 @@ void insertAtSpecificPosition(Node *&head, int pos, int value)
     temp->Next = newNode;
 }
 
+int searchByValueUnique(Node *&head, int key)
+{
+    Node *temp = head;
+    int count = 1;
+    if (head == NULL)
+    {
+        return -1;
+    }
+
+    while (temp->value != key)
+    {
+        if (temp->Next == NULL)
+        {
+            return -1;
+        }
+        temp = temp->Next;
+        count++;
+    }
+}
+
 int main()
 {
     Node *head = NULL;
@@ -95,6 +116,7 @@ int main()
     cout << "Choice 1: Insertion at head" << endl
          << "Choice 2: Insertion at tail" << endl
          << "Choice 3: Insertion at specific position" << endl
+         << "Choice 4: Search a value (Unique List)" << endl
          << "Choice 0: Exit" << endl
          << endl;
     cout << "Next Choice: ";
@@ -121,6 +143,20 @@ int main()
             cout << "Enter the value: ";
             cin >> value;
             insertAtSpecificPosition(head, position, value);
+            break;
+        case 4:
+            cout << "Enter the value to Search: ";
+            cin >> value;
+            position = searchByValueUnique(head, value);
+            if (position != -1)
+            {
+                cout << "The Number is at position " << position << endl;
+            }
+            else
+            {
+                cout << "The Number is not yet the list" << endl;
+            }
+            break;
         default:
             break;
         }
