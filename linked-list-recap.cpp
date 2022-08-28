@@ -199,7 +199,6 @@ int main()
         case 5:
             cout << "Enter the value to Search: ";
             cin >> value;
-            cout << "The number is at position: ";
             searchByValueDuplicate(head, value);
             break;
         default:
